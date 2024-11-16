@@ -72,7 +72,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
 
         [HttpPut, ActionName("Edit")]
         [Route("Edit")]
-        public async Task<ActionResult<Country>> EditProductoAsync(Producto producto)
+        public async Task<ActionResult<Producto>> EditProductoAsync(Producto producto)
         {
             try
             {
