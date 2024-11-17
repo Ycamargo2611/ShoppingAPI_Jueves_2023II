@@ -10,11 +10,11 @@ namespace ShoppingAPI_Jueves_2023II.DAL.Entities
         [Required(ErrorMessage = "¡El campo {0} es obligatorio!")]
         public string Name { get; set; }
 
-        [Display(Name = "País")]
+        [Display(Name = "producto")]
         //Relación con Producto
-        public Producto? Producto { get; set; } //Este representa un OBJETO DE COUNTRY
+        public Producto? Producto { get; set; } //Este representa un OBJETO DE Producto
 
-        [Display(Name = "Id País")]
-        public Guid CountryId { get; set; } //FK
+        [Display(Name = "Id producto")]
+        public Guid ProductoId { get; set; } //FK
     }
 }

@@ -16,8 +16,8 @@ builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(b
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddScoped<ICountryService, CountryService>();
-builder.Services.AddScoped<IStateService, StateService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddTransient<SeederDB>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

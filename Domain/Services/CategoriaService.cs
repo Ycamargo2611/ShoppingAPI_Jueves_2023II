@@ -16,7 +16,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 
         public async Task<IEnumerable<Categoria>> GetCategoriaByProductoIdAsync(Guid productoId)
         {
-            return await _context.Categoria
+            return await _context.Categorias
                 .Where(s => s.ProductoId == productoId)
                 .ToListAsync();
         }
@@ -27,11 +27,11 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
             {
                 categoria.Id = Guid.NewGuid();
                 categoria.CreatedDate = DateTime.Now;
-                categoria.CountryId = productoId;
-                categoria.Country = await _context.Producto.FirstOrDefaultAsync(c => c.Id == productoId);
+                categoria.ProductoId = productoId;
+                categoria.Producto = await _context.Productos.FirstOrDefaultAsync(c => c.Id == productoId);
                 categoria.ModifiedDate = null;
 
-                _context.Categoria.Add(categoria);
+                _context.Categorias.Add(categoria);
                 await _context.SaveChangesAsync();
 
                 return categoria;
@@ -49,7 +49,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 
         public async Task<Categoria> GetCategoriaByIdAsync(Guid id)
         {
-            return await _context.Categoria.FirstOrDefaultAsync(s => s.Id == id);
+            return await _context.Categorias.FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<Categoria> EditCategoriaAsync(Categoria categoria, Guid id)
@@ -58,7 +58,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
             {
                 categoria.ModifiedDate = DateTime.Now;
 
-                _context.States.Update(categoria);
+                _context.Categorias.Update(categoria);
                 await _context.SaveChangesAsync();
 
                 return categoria;
@@ -73,10 +73,10 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         {
             try
             {
-                var categoria = await _context.Categoria.FirstOrDefaultAsync(s => s.Id == id);
+                var categoria = await _context.Categorias.FirstOrDefaultAsync(s => s.Id == id);
                 if (categoria == null) return null;
 
-                _context.Categoria.Remove(categoria);
+                _context.Categorias.Remove(categoria);
                 await _context.SaveChangesAsync();
 
                 return categoria;

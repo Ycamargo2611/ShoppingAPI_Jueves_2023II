@@ -10,7 +10,7 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Productos",
+                name: "Producto",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -20,12 +20,12 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Productos", x => x.Id);
+                    table.PrimaryKey("PK_Producto", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_Name",
-                table: "Productos",
+                name: "IX_Producto_Name",
+                table: "Producto",
                 column: "Name",
                 unique: true);
         }
@@ -33,7 +33,7 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "Producto");
         }
     }
 }

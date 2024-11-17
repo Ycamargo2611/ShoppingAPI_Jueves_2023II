@@ -47,7 +47,7 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("ShoppingAPI_Jueves_2023II.DAL.Entities.State", b =>
+            modelBuilder.Entity("ShoppingAPI_Jueves_2023II.DAL.Entities.Categoria", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,13 +74,13 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
                     b.HasIndex("Name", "ProductoId")
                         .IsUnique();
 
-                    b.ToTable("States");
+                    b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("ShoppingAPI_Jueves_2023II.DAL.Entities.State", b =>
+            modelBuilder.Entity("ShoppingAPI_Jueves_2023II.DAL.Entities.Categoria", b =>
                 {
-                    b.HasOne("ShoppingAPI_Jueves_2023II.DAL.Entities.Country", "Producto")
-                        .WithMany("States")
+                    b.HasOne("ShoppingAPI_Jueves_2023II.DAL.Entities.Producto", "Producto")
+                        .WithMany("Categoria")
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -90,7 +90,7 @@ namespace ShoppingAPI_Jueves_2023II.Migrations
 
             modelBuilder.Entity("ShoppingAPI_Jueves_2023II.DAL.Entities.Producto", b =>
                 {
-                    b.Navigation("States");
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

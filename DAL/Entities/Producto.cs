@@ -12,7 +12,7 @@ namespace ShoppingAPI_Jueves_2023II.DAL.Entities
 
     [Display(Name = "Categorias")]
     //relación con Categoria 
-    public ICollection<Categoria>? States { get; set; }
+    public ICollection<Categoria>? Categorias { get; set; }
 }
 }
 

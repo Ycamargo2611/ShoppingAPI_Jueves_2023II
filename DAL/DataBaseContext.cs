@@ -21,8 +21,8 @@ namespace ShoppingAPI_Jueves_2023II.DAL
 
         #region DbSets
 
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<State> States { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
 
         #endregion
     }

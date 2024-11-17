@@ -96,7 +96,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
 
             var deletedProducto = await _productoService.DeleteProductoAsync(id);
 
-            if (deletedProducto == null) return NotFound("País no encontrado!");
+            if (deletedProducto == null) return NotFound("Producto no encontrado!");
 
             return Ok(deletedProducto);
         }

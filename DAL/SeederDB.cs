@@ -40,7 +40,7 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                 {
                     CreatedDate = DateTime.Now,
                     Name = "Carnicos",
-                    States = new List<Categoria>()
+                    Categorias = new List<Categoria>()
                     {
                         new Categoria
                         {
@@ -61,7 +61,7 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                 {
                     CreatedDate = DateTime.Now,
                     Name = "Kumis",
-                    States = new List<Categoria>()
+                    Categorias = new List<Categoria>()
                     {
                         new Categoria
                         {
