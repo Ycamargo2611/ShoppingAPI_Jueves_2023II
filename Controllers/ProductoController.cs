@@ -6,11 +6,11 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class ProductoController : ControllerBase
     {
         private readonly IProductoService _productoService;
 
-        public CountriesController(IProductoService productoService)
+        public ProductoController(IProductoService productoService)
         {
             _productoService = productoService;
         }
@@ -61,7 +61,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
         [Route("GetByName/{name}")] //URL: api/countries/get
         public async Task<ActionResult<Producto>> GetProductoByNameAsync(string name)
         {
-            if (name == null) return BadRequest("Nombre del país requerido!");
+            if (name == null) return BadRequest("Nombre del Producto requerido!");
 
             var producto = await _productoService.GetProductoByNameAsync(name);
 

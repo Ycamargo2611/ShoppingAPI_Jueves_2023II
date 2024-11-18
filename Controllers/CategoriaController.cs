@@ -40,7 +40,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
             {
                 if (ex.Message.Contains("duplicate"))
                 {
-                    return Conflict(String.Format("El estado/dpto {0} ya existe.", categoria.Name));
+                    return Conflict(String.Format("El Producto {0} ya existe.", categoria.Name));
                 }
 
                 return Conflict(ex.Message);
@@ -86,7 +86,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
 
             var deletedCategoria = await _categoriaService.DeleteCategoriaAsync(id);
 
-            if (deletedCategoria == null) return NotFound("País no encontrado!");
+            if (deletedCategoria == null) return NotFound("Producto no encontrado!");
 
             return Ok("State Deleted"); //in Ok() method you can send a message in swagger instead send the object
         }

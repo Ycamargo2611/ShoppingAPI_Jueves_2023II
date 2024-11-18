@@ -17,7 +17,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         public async Task<IEnumerable<Producto>> GetProductoAsync()
         {
             return await _context.Productos
-                .Include(c => c.Categorias) //include countries and state list
+                .Include(c => c.Categorias) //include productos and categoria a  lista
                 .ToListAsync();
         }
 
@@ -41,8 +41,8 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 
         public async Task<Producto> GetProductoByIdAsync(Guid id)
         {
-            //return await _context.Countries.FindAsync(id); // FindAsync es un método propio del DbContext (DbSet)
-            //return await _context.Countries.FirstAsync(x => x.Id == id); //FirstAsync es un método de EF CORE
+            //return await _context.Productos.FindAsync(id); // FindAsync es un método propio del DbContext (DbSet)
+            //return await _context.Productos.FirstAsync(x => x.Id == id); //FirstAsync es un método de EF CORE
             return await _context.Productos
                 .Include(c => c.Categorias)
                 .FirstOrDefaultAsync(c => c.Id == id); //FirstOrDefaultAsync es un método de EF CORE
@@ -74,8 +74,6 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         {
             try
             {
-                //Aquí, con el ID que traigo desde el controller, estoy recuperando el Producto que luego voy a eliminar.
-                //Ese país que recupero lo guardo en la variable producto
                 var producto = await _context.Productos
                     .Include(c => c.Name) // cascade removing
                     .FirstOrDefaultAsync(c => c.Id == id);
