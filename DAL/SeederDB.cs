@@ -52,6 +52,12 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                         {
                             CreatedDate = DateTime.Now,
                             Name = "Res"
+                        },
+
+                        new Categoria
+                        {
+                            CreatedDate = DateTime.Now,
+                            Name = "Cerdo"
                         }
                     }
                 });
@@ -74,6 +80,12 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                         {
                             CreatedDate = DateTime.Now,
                             Name = "Cuajada"
+                        },
+
+                        new Categoria
+                        {
+                            CreatedDate = DateTime.Now,
+                            Name = "Yogurt"
                         }
                     }
                 });

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingAPI_Jueves_2023II.DAL.Entities;
 using ShoppingAPI_Jueves_2023II.Domain.Interfaces;
+using System.Drawing;
+using System;
 
 namespace ShoppingAPI_Jueves_2023II.Controllers
 {
@@ -26,6 +28,20 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
             return Ok(productos);
         }
 
+        [HttpGet, ActionName("Get")]
+        [Route("GetById/{id}")] //URL: api/countries/get
+        public async Task<ActionResult<Producto>> GetProductoByIdAsync(Guid id)
+        {
+            //No es necesario validar id == null porque Guid es un tipo por valor, nunca será null.
+            //if (id == null) return BadRequest("Id es requerido!");
+
+            var producto = await _productoService.GetProductoByIdAsync(id);
+
+            if (producto == null) return NotFound(); // 404
+
+            return Ok(producto); // 200
+        }
+
         [HttpPost, ActionName("Create")]
         [Route("Create")]
         public async Task<ActionResult> CreatePruductoAsync(Producto producto)
@@ -44,30 +60,18 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
             }
         }
 
-        [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")] //URL: api/countries/get
-        public async Task<ActionResult<Producto>> GetProductoByIdAsync(Guid id)
-        {
-            if (id == null) return BadRequest("Id es requerido!");
-
-            var producto = await _productoService.GetProductoByIdAsync(id);
-
-            if (producto == null) return NotFound(); // 404
-
-            return Ok(producto); // 200
-        }
+        
 
         [HttpGet, ActionName("Get")]
         [Route("GetByName/{name}")] //URL: api/countries/get
         public async Task<ActionResult<Producto>> GetProductoByNameAsync(string name)
         {
-            if (name == null) return BadRequest("Nombre del Producto requerido!");
+            if (string.IsNullOrWhiteSpace(name))
+                return BadRequest("El nombre del producto es requerido."); // 400
 
             var producto = await _productoService.GetProductoByNameAsync(name);
 
-            if (producto == null) return NotFound(); // 404
-
-            return Ok(producto); // 200
+            return producto != null ? Ok(producto) : NotFound(); // 200 o 404
         }
 
         [HttpPut, ActionName("Edit")]
@@ -92,13 +96,24 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
         [Route("Delete")]
         public async Task<ActionResult<Producto>> DeleteProductoAsync(Guid id)
         {
-            if (id == null) return BadRequest("Id es requerido!");
+            //No es necesario validar id == null porque Guid es un tipo por valor, nunca será null.
+            //if (id == null) return BadRequest("Id es requerido!");
 
-            var deletedProducto = await _productoService.DeleteProductoAsync(id);
+            try
+            {
+                var deletedProducto = await _productoService.DeleteProductoAsync(id);
 
-            if (deletedProducto == null) return NotFound("Producto no encontrado!");
+                if (deletedProducto == null) return NotFound("Producto no encontrado!");
 
-            return Ok(deletedProducto);
+                return Ok(deletedProducto);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound();
+            }
+
+
         }
     }
 }

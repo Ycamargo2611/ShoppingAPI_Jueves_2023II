@@ -1,6 +1,8 @@
 ﻿using ShoppingAPI_Jueves_2023II.DAL.Entities;
 using ShoppingAPI_Jueves_2023II.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
+using System;
 
 namespace ShoppingAPI_Jueves_2023II.Controllers
 {
@@ -24,6 +26,19 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
             return Ok(categoria);
         }
 
+        [HttpGet, ActionName("Get")]
+        [Route("GetById/{id}")]
+        public async Task<ActionResult<Categoria>> GetCategoriaByIdAsync(Guid id)
+        {
+            //No es necesario validar id == null porque Guid es un tipo por valor, nunca será null.
+            //if (id == null) return BadRequest("Id es requerido!");
+
+            var categoria = await _categoriaService.GetCategoriaByIdAsync(id);
+
+            if (categoria == null) return NotFound();
+
+            return Ok(categoria);
+        }
         [HttpPost, ActionName("Create")]
         [Route("Create")]
         public async Task<ActionResult> CreateCategoriaAsync(Categoria categoria, Guid productoId)
@@ -45,20 +60,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
 
                 return Conflict(ex.Message);
             }
-        }
-
-        [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")]
-        public async Task<ActionResult<Categoria>> GetCategoriaByIdAsync(Guid id)
-        {
-            if (id == null) return BadRequest("Id es requerido!");
-
-            var categoria = await _categoriaService.GetCategoriaByIdAsync(id);
-
-            if (categoria == null) return NotFound();
-
-            return Ok(categoria);
-        }
+        }       
 
         [HttpPut, ActionName("Edit")]
         [Route("Edit")]
@@ -82,7 +84,8 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
         [Route("Delete")]
         public async Task<ActionResult<Categoria>> DeleteCategoriaAsync(Guid id)
         {
-            if (id == null) return BadRequest("Id es requerido!");
+            //No es necesario validar id == null porque Guid es un tipo por valor, nunca será null.
+            //if (id == null) return BadRequest("Id es requerido!");
 
             var deletedCategoria = await _categoriaService.DeleteCategoriaAsync(id);
 

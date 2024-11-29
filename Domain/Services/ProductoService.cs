@@ -16,9 +16,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 
         public async Task<IEnumerable<Producto>> GetProductoAsync()
         {
-            return await _context.Productos
-                .Include(c => c.Categorias) //include productos and categoria a  lista
-                .ToListAsync();
+            return await _context.Productos.Include(c => c.Categorias).ToListAsync(); //include productos and categoria a  lista
         }
 
         public async Task<Producto> CreateProductoAsync(Producto producto)
@@ -32,6 +30,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
                 await _context.SaveChangesAsync();
 
                 return producto;
+
             }
             catch (DbUpdateException dbUpdateException)
             {
@@ -44,9 +43,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
             //return await _context.Productos.FindAsync(id); // FindAsync es un método propio del DbContext (DbSet)
             //return await _context.Productos.FirstAsync(x => x.Id == id); //FirstAsync es un método de EF CORE
 
-            return await _context.Productos
-                .Include(c => c.Categorias)
-                .FirstOrDefaultAsync(c => c.Id == id); //FirstOrDefaultAsync es un método de EF CORE
+            return await _context.Productos.Include(c => c.Categorias).FirstOrDefaultAsync(c => c.Id == id); //FirstOrDefaultAsync es un método de EF CORE
         }
 
         public async Task<Producto> GetProductoByNameAsync(string name)
@@ -75,9 +72,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         {
             try
             {
-                var producto = await _context.Productos
-                    .Include(c => c.Name) // cascade removing
-                    .FirstOrDefaultAsync(c => c.Id == id);
+                var producto = await _context.Productos.Include(c => c.Name).FirstOrDefaultAsync(c => c.Id == id);
                 if (producto == null) return null; //Si el producto no existe, entonces me retorna un NULL
 
 
@@ -91,5 +86,6 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
                 throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
             }
         }
+
     }
 }

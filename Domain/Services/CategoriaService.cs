@@ -16,9 +16,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 
         public async Task<IEnumerable<Categoria>> GetCategoriaByProductoIdAsync(Guid productoId)
         {
-            return await _context.Categorias
-                .Where(s => s.ProductoId == productoId)
-                .ToListAsync();
+            return await _context.Categorias.Where(s => s.ProductoId == productoId).ToListAsync();
         }
 
         public async Task<Categoria> CreateCategoriaAsync(Categoria categoria, Guid productoId)
@@ -85,5 +83,6 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
                 throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
             }
         }
+
     }
 }
