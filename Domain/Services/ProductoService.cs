@@ -7,7 +7,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
 {
     public class ProductoService : IProductoService
     {
-        private readonly DataBaseContext _context;
+        private readonly DataBaseContext _context; //Inyección de dependencias
 
         public ProductoService(DataBaseContext context)
         {
