@@ -15,7 +15,7 @@ namespace ShoppingAPI_Jueves_2023II.Controllers
         }
 
         [HttpGet, ActionName("Get")]
-        [Route("Get")]
+        [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoriaByProductoIdAsync(Guid productoId)
         {
             var categoria = await _categoriaService.GetCategoriaByProductoIdAsync(productoId);
