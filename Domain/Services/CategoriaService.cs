@@ -29,7 +29,6 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
                 categoria.CreatedDate = DateTime.Now;
                 categoria.ProductoId = productoId;
                 categoria.Producto = await _context.Productos.FirstOrDefaultAsync(c => c.Id == productoId);
-                categoria.ModifiedDate = null;
 
                 _context.Categorias.Add(categoria);
                 await _context.SaveChangesAsync();
@@ -56,7 +55,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         {
             try
             {
-                categoria.ModifiedDate = DateTime.Now;
+                //categoria.ModifiedDate = DateTime.Now;
 
                 _context.Categorias.Update(categoria);
                 await _context.SaveChangesAsync();

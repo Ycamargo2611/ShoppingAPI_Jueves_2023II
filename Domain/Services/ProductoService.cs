@@ -58,7 +58,7 @@ namespace ShoppingAPI_Jueves_2023II.Domain.Services
         {
             try
             {
-                producto.ModifiedDate = DateTime.Now;
+                //producto.ModifiedDate = DateTime.Now;
 
                 _context.Productos.Update(producto); //El método Update que es de EF CORE me sirve para Actualizar un objeto
                 await _context.SaveChangesAsync();
