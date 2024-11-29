@@ -60,13 +60,14 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                 _context.Productos.Add(new Producto
                 {
                     CreatedDate = DateTime.Now,
-                    Name = "Kumis",
+                    Name = "Lacteos",
+                    
                     Categorias = new List<Categoria>()
                     {
                         new Categoria
                         {
                             CreatedDate = DateTime.Now,
-                            Name = "Lacteos"
+                            Name = "Kumis"
                         }
                     }
                 });
