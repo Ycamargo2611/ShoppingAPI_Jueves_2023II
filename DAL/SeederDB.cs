@@ -68,6 +68,12 @@ namespace ShoppingAPI_Jueves_2023II.DAL
                         {
                             CreatedDate = DateTime.Now,
                             Name = "Kumis"
+                        },
+
+                        new Categoria
+                        {
+                            CreatedDate = DateTime.Now,
+                            Name = "Cuajada"
                         }
                     }
                 });
